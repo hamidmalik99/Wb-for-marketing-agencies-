@@ -1,0 +1,6 @@
+{
+  "name": "Web Developer & AI Integration Portfolio",
+  "description": "Minimalist terminal-style developer portfolio and interactive AI workflow automation playground for Upwork clients.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
