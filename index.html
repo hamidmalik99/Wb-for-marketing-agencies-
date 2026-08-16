@@ -1,759 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamid Ali — Web Developer & AI Integration Specialist</title>
-  <meta name="description" content="Web developer specialising in WordPress, WooCommerce, workflow automation and AI integrations. 50+ sites delivered across AU, UK, US." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hamid Ali Asad — Portfolio</title>
+  <meta name="description" content="Hamid Ali Asad — I build websites and automate workflows. WordPress, WooCommerce, Webflow, AI integrations, Make, Zapier. 50+ sites across AU, UK, US." />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --bg:        #111110;
-      --bg-2:      #191918;
-      --bg-3:      #222220;
-      --line:      rgba(255,255,255,0.07);
-      --line-md:   rgba(255,255,255,0.12);
-      --white:     #f4f3f0;
-      --muted:     rgba(244,243,240,0.45);
-      --dim:       rgba(244,243,240,0.22);
-      --green:     #4ade80;
-      --mono: 'JetBrains Mono', 'Fira Code', monospace;
-      --sans: 'Inter', system-ui, sans-serif;
+    :root{
+      --color-primary: #7C3AED; /* Electric Purple */
+      --color-accent: #A3E635;  /* Lime */
+      --bg: #0F1724;            /* Dark Navy */
+      --surface: rgba(255,255,255,0.03);
+      --text: #E6F1FF;          /* light text on dark bg */
+      --muted: #9FB4CC;
+      --card: rgba(255,255,255,0.025);
+      --radius: 12px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--white);
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    html,body { background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 5rem);
-      height: 56px;
-      background: rgba(17,17,16,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    .nav-logo .cursor {
-      display: inline-block;
-      width: 8px; height: 14px;
-      background: var(--green);
-      margin-left: 2px;
-      vertical-align: middle;
-      animation: blink 1.2s step-end infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      font-family: var(--mono);
-      font-size: 0.75rem !important;
-      color: var(--green) !important;
-      border: 1px solid rgba(74,222,128,0.3) !important;
-      padding: 0.35rem 0.9rem;
-      border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s !important;
-    }
-    .nav-cta:hover { background: rgba(74,222,128,0.07) !important; border-color: rgba(74,222,128,0.6) !important; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
-    .nav-hamburger span { width: 20px; height: 1.5px; background: var(--white); border-radius: 2px; }
-
-    /* ── HERO ── */
-    #hero {
-      padding: 8rem clamp(1.5rem, 5vw, 5rem) 6rem;
-      max-width: 1100px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .hero-left {}
-
-    .hero-status {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--green);
-      margin-bottom: 2rem;
-    }
-    .hero-status::before {
-      content: '';
-      width: 7px; height: 7px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-
-    .hero-name {
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-    .hero-title {
-      font-family: var(--mono);
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 1.8rem;
-      letter-spacing: -0.01em;
-    }
-    .hero-title .accent { color: var(--green); }
-
-    .hero-bio {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 420px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-bio strong { color: var(--white); font-weight: 500; }
-
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--white);
-      color: var(--bg);
-      padding: 0.7rem 1.5rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-      letter-spacing: 0.01em;
+      background: linear-gradient(180deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 85%, black 15%));
+      color: white;
+      border-radius: 10px;
+      padding: .65rem 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(124,58,237,0.18);
     }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-outline {
+    .btn-primary:hover { transform: translateY(-3px); filter: brightness(1.02); }
+
+    .btn-secondary {
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
       background: transparent;
-      color: var(--white);
-      padding: 0.7rem 1.5rem;
-      border-radius: 4px;
-      border: 1px solid var(--line-md);
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.15s;
+      border-radius: 10px;
+      padding: .55rem .95rem;
+      font-weight: 700;
     }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-1px); }
-
-    /* Terminal card */
-    .hero-terminal {
-      background: var(--bg-2);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
+    .btn-accent {
+      background: var(--color-accent);
+      color: #072000;
+      border-radius: 10px;
+      padding: .5rem .9rem;
+      font-weight: 700;
     }
-    .terminal-bar {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--line);
-      background: var(--bg-3);
-    }
-    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .t-dot.r { background: #e05c5c; }
-    .t-dot.y { background: #e8b84b; }
-    .t-dot.g { background: #4ade80; }
-    .terminal-title { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); margin-left: 0.5rem; }
-    .terminal-body { padding: 1.5rem; font-family: var(--mono); font-size: 0.78rem; line-height: 1.9; }
-    .t-prompt { color: var(--green); }
-    .t-cmd { color: var(--white); }
-    .t-output { color: var(--muted); padding-left: 1rem; }
-    .t-key { color: rgba(255,255,255,0.6); }
-    .t-val { color: var(--green); }
-    .t-comment { color: var(--dim); }
 
-    /* ── SECTIONS ── */
-    .section {
-      padding: clamp(4rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
-      border-top: 1px solid var(--line);
-    }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-    .section-num { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
-    .section-title { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; }
+    a.project-card{ transition: transform .18s ease, box-shadow .18s ease; text-decoration: none; color: inherit; }
+    a.project-card:hover{ transform: translateY(-6px); box-shadow: 0 20px 50px rgba(2,6,23,0.6); }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.04); }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--bg); }
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .skill-group { background: var(--bg-2); padding: 1.5rem; }
-    .skill-group-name { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .skill-list { display: flex; flex-direction: column; gap: 0.45rem; }
-    .skill-item { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
-    .skill-item::before { content: '—'; color: var(--dim); font-family: var(--mono); }
-    .skill-item.highlight { color: var(--white); }
-    .skill-item.highlight::before { color: var(--green); content: '✓'; }
-
-    /* ── WORK ── */
-    #work { background: var(--bg); }
-    .work-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .work-item {
-      background: var(--bg-2);
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      align-items: center;
-      gap: 2rem;
-      padding: 1.25rem 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.15s;
-    }
-    .work-item:hover { background: var(--bg-3); }
-    .work-item-title { font-size: 0.88rem; font-weight: 500; color: var(--white); margin-bottom: 0.2rem; }
-    .work-item-desc { font-size: 0.75rem; color: var(--muted); }
-    .work-item-industry { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
-    .work-item-stack { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
-    .work-item-link { font-family: var(--mono); font-size: 0.72rem; color: var(--green); white-space: nowrap; }
-    .work-divider { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); padding: 0.6rem 1.5rem; background: var(--bg-3); letter-spacing: 0.05em; text-transform: uppercase; }
-
-    /* ── AUTOMATION SHOWCASE ── */
-    #automation { background: var(--bg); }
-    .auto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .auto-card { background: var(--bg-2); padding: 2rem 1.5rem; transition: background 0.2s; }
-    .auto-card:hover { background: var(--bg-3); }
-    .auto-card-icon { font-family: var(--mono); font-size: 0.75rem; color: var(--green); margin-bottom: 1rem; }
-    .auto-card-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white); }
-    .auto-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
-    .auto-card-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .auto-tag { font-family: var(--mono); font-size: 0.65rem; color: var(--dim); border: 1px solid var(--line); padding: 0.15rem 0.5rem; border-radius: 3px; }
-
-    /* ── STATS ── */
-    #stats { background: var(--bg-2); }
-    .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .stat-box { padding: 2rem 1.5rem; border-right: 1px solid var(--line); text-align: center; }
-    .stat-box:last-child { border-right: none; }
-    .stat-num { font-size: 2.2rem; font-weight: 600; letter-spacing: -0.04em; color: var(--white); line-height: 1; margin-bottom: 0.4rem; }
-    .stat-label { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); letter-spacing: 0.04em; text-transform: uppercase; }
-
-    /* ── ABOUT ── */
-    #about { background: var(--bg); }
-    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .about-photo {
-      aspect-ratio: 4/5;
-      background: var(--bg-2);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-text p { font-size: 0.92rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; }
-    .about-text p strong { color: var(--white); font-weight: 500; }
-    .about-meta { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
-    .about-meta-row { display: flex; align-items: center; gap: 1rem; font-size: 0.8rem; }
-    .about-meta-key { font-family: var(--mono); color: var(--dim); min-width: 110px; font-size: 0.72rem; }
-    .about-meta-val { color: var(--muted); }
-    .about-meta-val.green { color: var(--green); }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--bg-2); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .contact-info p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
-    .contact-link { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .contact-link:hover { color: var(--white); }
-    .contact-link-icon { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); width: 20px; }
-    .contact-form { background: var(--bg-3); border: 1px solid var(--line); border-radius: 8px; padding: 1.75rem; }
-    .form-group { margin-bottom: 1rem; }
-    .form-group label { display: block; font-family: var(--mono); font-size: 0.68rem; color: var(--dim); margin-bottom: 0.4rem; letter-spacing: 0.04em; text-transform: uppercase; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 0.65rem 0.9rem; font-family: var(--sans); font-size: 0.85rem; color: var(--white); outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
-    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--dim); }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(255,255,255,0.25); }
-    .form-group select option { background: var(--bg); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .form-submit { width: 100%; background: var(--white); color: var(--bg); border: none; border-radius: 4px; padding: 0.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: opacity 0.2s; }
-    .form-submit:hover { opacity: 0.88; }
-    .form-success { display: none; text-align: center; padding: 2rem; font-family: var(--mono); font-size: 0.85rem; color: var(--green); }
-
-    /* ── FOOTER ── */
-    footer { background: var(--bg); border-top: 1px solid var(--line); padding: 1.5rem clamp(1.5rem, 5vw, 5rem); }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-copy { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-size: 0.78rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--muted); }
-
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      #hero { grid-template-columns: 1fr; gap: 3rem; min-height: unset; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .auto-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(3, 1fr); }
-      .about-layout { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .work-item { grid-template-columns: 1fr auto; }
-      .work-item-industry, .work-item-stack { display: none; }
-    }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 1.2rem 1.5rem; gap: 1rem; z-index: 99; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .form-row { grid-template-columns: 1fr; }
-    }
+    /* small utilities not covered by CDN classes */
+    .muted { color: var(--muted); }
+    .surface-card { background: var(--card); border: 1px solid rgba(255,255,255,0.04); }
   </style>
 </head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">hamid.dev<span class="cursor"></span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#automation">Automation</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">hire me →</a></li>
-    </ul>
-    <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-left">
-      <div class="hero-status">available for new projects</div>
-      <h1 class="hero-name">Hamid Ali</h1>
-      <div class="hero-title">
-        <span class="accent">web_developer</span> + <span class="accent">ai_integration</span>
-      </div>
-      <p class="hero-bio">
-        I build websites and automate workflows for businesses that need things done right the first time. <strong>50+ sites delivered</strong> across Australia, UK, and the US — WordPress, WooCommerce, Webflow, and custom integrations with AI tools, Make, and Zapier.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Start a project</a>
-        <a href="#work" class="btn-outline">View work →</a>
-      </div>
+<body class="antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-40" style="backdrop-filter: blur(6px);">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-lg font-bold" style="color:var(--text)">Hamid Ali Asad</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#projects" class="muted hover:text-[color:var(--text)]">Projects</a>
+        <a href="#about" class="muted hover:text-[color:var(--text)]">About</a>
+        <a href="#contact" class="muted hover:text-[color:var(--text)]">Contact</a>
+        <a href="#" class="btn-secondary">Resume</a>
+        <a href="#contact" class="btn-primary ml-2">Contact</a>
+      </nav>
+      <button class="md:hidden p-2 rounded-lg border border-white/6" aria-label="Open menu">☰</button>
     </div>
+  </header>
 
-    <!-- Terminal -->
-    <div class="hero-terminal">
-      <div class="terminal-bar">
-        <div class="t-dot r"></div>
-        <div class="t-dot y"></div>
-        <div class="t-dot g"></div>
-        <span class="terminal-title">~/hamid — profile.json</span>
-      </div>
-      <div class="terminal-body">
-        <div><span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span></div>
-        <div class="t-output">{</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Hamid Ali Asad"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Web Dev + AI Integration"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Pakistan (works AEST)"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"5 years"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"sites_delivered"</span>: <span class="t-val">50</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"markets"</span>: [</div>
-        <div class="t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"AU"</span>, <span class="t-val">"UK"</span>, <span class="t-val">"US"</span>, <span class="t-val">"NZ"</span></div>
-        <div class="t-output">&nbsp;&nbsp;],</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"core_stack"</span>: [</div>
-        <div class="t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"WordPress"</span>, <span class="t-val">"WooCommerce"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Webflow"</span>, <span class="t-val">"React"</span></div>
-        <div class="t-output">&nbsp;&nbsp;],</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"ai_tools"</span>: [</div>
-        <div class="t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Claude API"</span>, <span class="t-val">"OpenAI"</span>,</div>
-        <div class="t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Make"</span>, <span class="t-val">"Zapier"</span></div>
-        <div class="t-output">&nbsp;&nbsp;],</div>
-        <div class="t-output">&nbsp;&nbsp;<span class="t-key">"available"</span>: <span class="t-val">true</span> <span class="t-comment">// open to work</span></div>
-        <div class="t-output">}</div>
-        <div style="margin-top:0.5rem"><span class="t-prompt">$ </span><span class="cursor" style="background:rgba(74,222,128,0.7);width:7px;height:12px;display:inline-block;animation:blink 1.2s step-end infinite;vertical-align:middle;"></span></div>
-      </div>
-    </div>
-  </section>
+  <!-- Hero -->
+  <main class="max-w-6xl mx-auto px-6 pt-10 pb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-sm muted mb-3">Hi — I’m</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight" style="color:var(--text)">Hamid Ali Asad</h1>
+        <p class="mt-4 text-[17px] muted max-w-2xl">
+          I build websites and automate workflows for businesses that need things done right the first time. 50+ sites delivered across Australia, UK, and the US — WordPress, WooCommerce, Webflow, and custom integrations with AI tools, Make, and Zapier.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="btn-primary inline-flex items-center gap-2">View Work</a>
+          <a href="#" class="btn-secondary inline-flex items-center gap-2">Download Resume</a>
+        </div>
 
-  <!-- STATS -->
-  <div id="stats" class="section" style="padding-top:3rem;padding-bottom:3rem;">
-    <div class="section-inner">
-      <div class="stats-row reveal">
-        <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Sites built</div></div>
-        <div class="stat-box"><div class="stat-num">5yr</div><div class="stat-label">Experience</div></div>
-        <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Countries</div></div>
-        <div class="stat-box"><div class="stat-num">20+</div><div class="stat-label">Industries</div></div>
-        <div class="stat-box"><div class="stat-num">&lt;4h</div><div class="stat-label">Response time</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <h2 class="section-title">Skills & Stack</h2>
-      </div>
-      <div class="skills-grid reveal">
-        <div class="skill-group">
-          <div class="skill-group-name">// CMS & Frontend</div>
-          <div class="skill-list">
-            <div class="skill-item highlight">WordPress</div>
-            <div class="skill-item highlight">WooCommerce</div>
-            <div class="skill-item highlight">Webflow</div>
-            <div class="skill-item highlight">Shopify</div>
-            <div class="skill-item">Elementor / Divi</div>
-            <div class="skill-item">ACF Pro</div>
-            <div class="skill-item">Custom post types</div>
-          </div>
+        <div class="mt-8 text-sm muted">
+          <strong>Specialties:</strong> WordPress • WooCommerce • Webflow • Integrations (Make, Zapier) • AI automation • Migrations
         </div>
-        <div class="skill-group">
-          <div class="skill-group-name">// Code</div>
-          <div class="skill-list">
-            <div class="skill-item highlight">HTML / CSS / JS</div>
-            <div class="skill-item highlight">PHP</div>
-            <div class="skill-item highlight">React</div>
-            <div class="skill-item">Tailwind CSS</div>
-            <div class="skill-item">REST APIs</div>
-            <div class="skill-item">Custom plugins</div>
-            <div class="skill-item">MySQL</div>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">// AI & Automation</div>
-          <div class="skill-list">
-            <div class="skill-item highlight">Claude API</div>
-            <div class="skill-item highlight">OpenAI API</div>
-            <div class="skill-item highlight">Make (Integromat)</div>
-            <div class="skill-item highlight">Zapier</div>
-            <div class="skill-item">AI chatbot integration</div>
-            <div class="skill-item">Webhook automation</div>
-            <div class="skill-item">n8n</div>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">// Tools & Integrations</div>
-          <div class="skill-list">
-            <div class="skill-item highlight">GA4 / GTM</div>
-            <div class="skill-item highlight">HubSpot</div>
-            <div class="skill-item">Mailchimp / Brevo</div>
-            <div class="skill-item">Meta Pixel</div>
-            <div class="skill-item">Stripe / PayPal</div>
-            <div class="skill-item">Ahrefs / GSC</div>
-            <div class="skill-item">Screaming Frog</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Selected Work</h2>
       </div>
 
-      <div class="work-list reveal">
-        <!-- AU -->
-        <div class="work-divider">// Australia</div>
-        <a href="https://sammeltax.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">sammeltax.com.au</div><div class="work-item-desc">Tax law firm — services, blog & Calendly booking</div></div>
-          <div class="work-item-industry">Law</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://illuminaenergy.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">illuminaenergy.com.au</div><div class="work-item-desc">Solar installer — lead gen & quote system</div></div>
-          <div class="work-item-industry">Energy</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://proluxepaintingservices.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">proluxepaintingservices.com.au</div><div class="work-item-desc">Painting trades — quote request & service pages</div></div>
-          <div class="work-item-industry">Trades</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://thebricklane.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">thebricklane.com.au</div><div class="work-item-desc">Restaurant — menu, reservations & location pages</div></div>
-          <div class="work-item-industry">Hospitality</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://homecomfort.me/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">homecomfort.me</div><div class="work-item-desc">HVAC & home maintenance — service pages & booking</div></div>
-          <div class="work-item-industry">Home Services</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://luxemedicalaesthetics.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">luxemedicalaesthetics.com.au</div><div class="work-item-desc">Med spa — treatment pages, booking & gallery</div></div>
-          <div class="work-item-industry">Medical</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://buonconstruction.com/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">buonconstruction.com</div><div class="work-item-desc">Construction & renovation — project gallery & quote</div></div>
-          <div class="work-item-industry">Construction</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-
-        <!-- UK -->
-        <div class="work-divider">// United Kingdom</div>
-        <a href="https://pashashisha.uk/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">pashashisha.uk</div><div class="work-item-desc">Premium shisha lounge — menu, bookings & locations</div></div>
-          <div class="work-item-industry">Hospitality</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://dc10rooms.co.uk/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">dc10rooms.co.uk</div><div class="work-item-desc">Boutique accommodation — listings & booking flow</div></div>
-          <div class="work-item-industry">Accommodation</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://onlinepharmacy-4u.co.uk/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">onlinepharmacy-4u.co.uk</div><div class="work-item-desc">Online pharmacy — product listings & prescription flow</div></div>
-          <div class="work-item-industry">Healthcare</div>
-          <div class="work-item-stack">Laravel + Bootstrap</div>
-          <div class="work-item-link">↗</div>
-        </a>
-
-        <!-- Other -->
-        <div class="work-divider">// US / NZ / Pakistan</div>
-        <a href="https://livelyproperties.com.au/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">livelyproperties.com.au</div><div class="work-item-desc">STR direct booking — Airbnb sync & calendar integration</div></div>
-          <div class="work-item-industry">Short-Term Rental</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://chughtaimedicalcenters.com/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">chughtaimedicalcenters.com</div><div class="work-item-desc">Medical centre network — multi-location & patient portal</div></div>
-          <div class="work-item-industry">Healthcare</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-        <a href="https://leonine.com.pk/" target="_blank" rel="noopener noreferrer" class="work-item">
-          <div><div class="work-item-title">leonine.com.pk</div><div class="work-item-desc">Corporate site — services, team & case studies</div></div>
-          <div class="work-item-industry">Corporate</div>
-          <div class="work-item-stack">WordPress</div>
-          <div class="work-item-link">↗</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- AUTOMATION -->
-  <section id="automation" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Automation & AI Integration</h2>
-      </div>
-      <div class="auto-grid reveal">
-        <div class="auto-card">
-          <div class="auto-card-icon">// 01 — AI Chatbot Integration</div>
-          <div class="auto-card-title">AI-powered chat on WordPress</div>
-          <p class="auto-card-desc">Custom chatbots trained on client content — integrated directly into WordPress sites. Handles FAQs, lead capture, and appointment booking without human involvement.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">Claude API</span>
-            <span class="auto-tag">OpenAI</span>
-            <span class="auto-tag">WordPress</span>
-            <span class="auto-tag">Custom PHP</span>
-          </div>
-        </div>
-        <div class="auto-card">
-          <div class="auto-card-icon">// 02 — Review Automation</div>
-          <div class="auto-card-title">Auto-post reviews to website + social</div>
-          <p class="auto-card-desc">New Airbnb or Google review comes in → instantly appears on the client's website AND posts to Instagram and Facebook. Zero manual effort on the client's end.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">Make</span>
-            <span class="auto-tag">Zapier</span>
-            <span class="auto-tag">Airbnb API</span>
-            <span class="auto-tag">Meta API</span>
-          </div>
-        </div>
-        <div class="auto-card">
-          <div class="auto-card-icon">// 03 — Lead Qualification</div>
-          <div class="auto-card-title">AI lead scoring & routing</div>
-          <p class="auto-card-desc">Contact form submissions routed through an AI layer that qualifies the lead, tags them by service type, and sends personalised follow-up emails — all before anyone opens their inbox.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">OpenAI</span>
-            <span class="auto-tag">Make</span>
-            <span class="auto-tag">HubSpot</span>
-            <span class="auto-tag">Brevo</span>
-          </div>
-        </div>
-        <div class="auto-card">
-          <div class="auto-card-icon">// 04 — Content Generation</div>
-          <div class="auto-card-title">AI-assisted content pipelines</div>
-          <p class="auto-card-desc">Automated pipelines that generate first-draft blog posts, product descriptions, or social captions from a brief — pushed directly to WordPress or a CMS for human review and publishing.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">Claude API</span>
-            <span class="auto-tag">WordPress REST</span>
-            <span class="auto-tag">n8n</span>
-          </div>
-        </div>
-        <div class="auto-card">
-          <div class="auto-card-icon">// 05 — Calendar & Booking Sync</div>
-          <div class="auto-card-title">Multi-platform calendar automation</div>
-          <p class="auto-card-desc">Two-way calendar sync between direct booking websites and Airbnb, VRBO, Hostaway, and Lodgify. Bookings from any channel instantly block all others — zero double-booking risk.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">Hostaway API</span>
-            <span class="auto-tag">iCal</span>
-            <span class="auto-tag">Make</span>
-            <span class="auto-tag">WordPress</span>
-          </div>
-        </div>
-        <div class="auto-card">
-          <div class="auto-card-icon">// 06 — WooCommerce Automation</div>
-          <div class="auto-card-title">Order & inventory workflows</div>
-          <p class="auto-card-desc">Custom WooCommerce automation: low-stock alerts, supplier order triggers, customer re-engagement emails, and post-purchase upsell sequences — all built on Make or Zapier.</p>
-          <div class="auto-card-stack">
-            <span class="auto-tag">WooCommerce</span>
-            <span class="auto-tag">Make</span>
-            <span class="auto-tag">Mailchimp</span>
-            <span class="auto-tag">Webhooks</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-num">04</span>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-layout reveal">
-        <div class="about-photo">
-          <img src="hamid_profile.png" alt="Hamid Ali" onerror="this.parentNode.style.background='var(--bg-3)'" />
-        </div>
-        <div class="about-text">
-          <p>I'm <strong>Hamid Ali Asad</strong>, a web developer and automation specialist based in Pakistan. I've spent the past 5 years building websites and workflows for clients across Australia, the UK, the US, and New Zealand — across industries ranging from law and healthcare to hospitality, construction, and e-commerce.</p>
-          <p>My background is in both <strong>development and business development</strong> — which means I build things that work technically and actually achieve the business goal behind them. A website isn't done when it's live; it's done when it's converting.</p>
-          <p>I started integrating AI tools into client projects in 2023 — first as chatbots, then as full workflow automation stacks using Claude API, OpenAI, and Make. It's now a core part of what I offer.</p>
-          <p>I work on <strong>AEST hours</strong>, respond within 4 hours, and have never missed a deadline.</p>
-          <div class="about-meta">
-            <div class="about-meta-row"><span class="about-meta-key">location</span><span class="about-meta-val">Lahore, Pakistan</span></div>
-            <div class="about-meta-row"><span class="about-meta-key">timezone</span><span class="about-meta-val">PKT (AEST −5hrs)</span></div>
-            <div class="about-meta-row"><span class="about-meta-key">response_time</span><span class="about-meta-val">&lt; 4 hours</span></div>
-            <div class="about-meta-row"><span class="about-meta-key">availability</span><span class="about-meta-val green">open to new projects</span></div>
-            <div class="about-meta-row"><span class="about-meta-key">rate</span><span class="about-meta-val">$15–25/hr · fixed price available</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-num">05</span>
-        <h2 class="section-title">Start a Project</h2>
-      </div>
-      <div class="contact-grid reveal">
-        <div class="contact-info">
-          <p>I'm available for freelance projects, contract work, and ongoing retainers. Tell me what you're building — I'll come back with a timeline and quote within 4 hours.</p>
-          <div class="contact-links">
-            <a href="mailto:info@hamidbuilds.dev" class="contact-link">
-              <span class="contact-link-icon">✉</span> info@hamidbuilds.dev
-            </a>
-            </a>
-            <a href="https://hamidbuilds.dev" target="_blank" rel="noopener noreferrer" class="contact-link">
-              <span class="contact-link-icon">🌐</span> hamidbuilds.dev
-            </a>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="form-success" id="formSuccess">// message sent. I'll reply within 4 hours.</div>
-          <div id="formFields">
-            <div class="form-row">
-              <div class="form-group"><label>name</label><input type="text" id="fname" placeholder="Your name" /></div>
-              <div class="form-group"><label>email</label><input type="email" id="femail" placeholder="you@company.com" /></div>
+      <div class="order-first md:order-last">
+        <!-- hero visual placeholder -->
+        <div class="rounded-[14px] overflow-hidden glass p-4 surface-card">
+          <div class="w-full h-56 md:h-72 bg-gradient-to-r from-[color:var(--color-primary)]/30 via-transparent to-[color:var(--color-accent)]/18 flex items-center justify-center rounded-lg">
+            <div class="text-center">
+              <div class="text-sm muted mb-2">Featured</div>
+              <div class="text-lg font-semibold" style="color:var(--text)">Structural engineering & building industry sites</div>
+              <p class="muted mt-2 text-sm">Responsive builds, migrations and SEO-focused rollouts.</p>
             </div>
-            <div class="form-group">
-              <label>project type</label>
-              <select id="ftype">
-                <option value="" disabled selected>Select</option>
-                <option>WordPress website</option>
-                <option>WooCommerce store</option>
-                <option>Webflow site</option>
-                <option>AI / Automation integration</option>
-                <option>Full-stack custom build</option>
-                <option>Ongoing retainer</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>budget range</label>
-              <select id="fbudget">
-                <option value="" disabled selected>Select</option>
-                <option>Under $500</option>
-                <option>$500 – $1,500</option>
-                <option>$1,500 – $5,000</option>
-                <option>$5,000+</option>
-                <option>Ongoing / hourly</option>
-              </select>
-            </div>
-            <div class="form-group"><label>brief</label><textarea id="fbrief" placeholder="What are you building? What's the deadline?"></textarea></div>
-            <button class="form-submit" onclick="submitForm()">Send message</button>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <img src="https://via.placeholder.com/320x180/7C3AED/FFFFFF?text=cantileverengineers" alt="cantileverengineers" class="rounded-md w-full object-cover h-28 border">
+            <img src="https://via.placeholder.com/320x180/A3E635/072000?text=melbournestructural" alt="melbourne structural" class="rounded-md w-full object-cover h-28 border">
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-copy">© 2026 Hamid Ali Asad · info@hamidbuilds.dev</div>
-      <ul class="footer-links">
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#automation">Automation</a></li>
-        <li><a href="mailto:info@hamidbuilds.dev">Email</a></li>
-      </ul>
-    </div>
-  </footer>
+    <!-- Featured project -->
+    <section class="mt-12">
+      <div class="rounded-[14px] overflow-hidden surface-card p-6 md:flex gap-6 items-center">
+        <div class="md:flex-1">
+          <img src="https://via.placeholder.com/900x480/0F1724/FFFFFF?text=Featured+Project" alt="Featured project" class="rounded-md w-full object-cover shadow-sm border">
+        </div>
+        <div class="md:w-1/3 mt-4 md:mt-0">
+          <h3 class="text-2xl font-semibold" style="color:var(--text)">Structural Engineering Suite — Multiple site builds</h3>
+          <p class="muted mt-3">Responsive rollouts and SEO-first rebuilds across multiple regional practices — focused on lead generation and clarity for technical services.</p>
+          <div class="mt-4 flex gap-3">
+            <a class="btn-primary" href="https://cantileverengineers.com.au" target="_blank" rel="noopener">View live</a>
+            <a class="btn-accent" href="#projects">Case Study</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('open');
-    }
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    reveals.forEach(r => obs.observe(r));
-    function submitForm() {
-      const name   = document.getElementById('fname').value.trim();
-      const email  = document.getElementById('femail').value.trim();
-      const type   = document.getElementById('ftype').value;
-      const budget = document.getElementById('fbudget').value;
-      const brief  = document.getElementById('fbrief').value.trim();
-      if (!name || !email) { alert('Please fill in your name and email.'); return; }
-      const subject = encodeURIComponent(`Project Enquiry from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type||'—'}\nBudget: ${budget||'—'}\n\nBrief:\n${brief||'—'}`);
-      window.location.href = `mailto:info@hamidbuilds.dev?subject=${subject}&body=${body}`;
-      document.getElementById('formFields').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }
-  </script>
+    <!-- Projects grid -->
+    <section id="projects" class="mt-12">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold" style="color:var(--text)">Selected Projects</h2>
+        <a href="#projects-full" class="text-sm muted hover:text-[color:var(--text)]">View all projects →</a>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://cantileverengineers.com.au" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">cantileverengineers.com.au</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">Structural Engineering — Cantilever Engineers</h4>
+          <p class="mt-1 text-sm muted">WordPress build • SEO • Lead forms</p>
+        </a>
+
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://pentanet.com.au" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">pentanet.com.au</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">Pentanet — ISP</h4>
+          <p class="mt-1 text-sm muted">Platform updates • Performance optimisations</p>
+        </a>
+
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://presidentialtranspo.com" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">presidentialtranspo.com</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">Presidential Transpo — Limo (USA)</h4>
+          <p class="mt-1 text-sm muted">Booking UX • Webflow → WordPress migrations</p>
+        </a>
+
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://99medispa.com.au" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">99medispa.com.au</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">99 MediSpa — Skincare</h4>
+          <p class="mt-1 text-sm muted">WooCommerce • Local SEO</p>
+        </a>
+
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://francelimousineservices.fr" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">francelimousineservices.fr</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">France Limousine Services</h4>
+          <p class="mt-1 text-sm muted">Localised multi-language site</p>
+        </a>
+
+        <a class="project-card block rounded-[12px] surface-card p-4 border" href="https://wateraid.org/uk" target="_blank" rel="noopener">
+          <div class="h-36 rounded-md flex items-center justify-center text-sm muted">wateraid.org/uk</div>
+          <h4 class="mt-3 font-semibold" style="color:var(--text)">WaterAid (reference)</h4>
+          <p class="mt-1 text-sm muted">Reference / collaboration</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mt-12 surface-card rounded-[12px] p-6">
+      <div class="md:flex items-center gap-6">
+        <img src="https://via.placeholder.com/160/7C3AED/E6F1FF?text=Hamid" alt="Hamid Ali Asad" class="w-32 h-32 rounded-full object-cover border">
+        <div>
+          <h3 class="text-xl font-semibold" style="color:var(--text)">About — Hamid Ali Asad</h3>
+          <p class="mt-3 muted max-w-3xl">I build websites and automate workflows for businesses that need things done right the first time. 50+ sites delivered across Australia, UK, and the US — WordPress, WooCommerce, Webflow, and custom integrations with AI tools, Make, and Zapier.</p>
+          <div class="mt-3 flex gap-3">
+            <a class="btn-primary" href="#contact">Work with me</a>
+            <a class="btn-secondary" href="#">Download Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mt-10">
+      <h4 class="text-lg font-semibold" style="color:var(--text)">Tools & Tech</h4>
+      <div class="mt-3 flex flex-wrap gap-3">
+        <span class="px-3 py-1 rounded-full surface-card text-sm">WordPress</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">WooCommerce</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">Webflow</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">Next.js</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">Tailwind</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">Figma</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">Make / Zapier</span>
+        <span class="px-3 py-1 rounded-full surface-card text-sm">AI Integrations</span>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" class="mt-12 rounded-[12px] p-6" style="background:linear-gradient(180deg, rgba(124,58,237,0.06), rgba(163,230,53,0.03)); border:1px solid rgba(255,255,255,0.03);">
+      <div class="md:flex items-center justify-between">
+        <div>
+          <h4 class="text-xl font-semibold" style="color:var(--text)">Interested in working together?</h4>
+          <p class="muted mt-2">Tell me about your project — I focus on reliable builds and clean automations.</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a class="btn-primary" href="mailto:hello@example.com">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-12 pb-12 text-sm muted">
+      <div class="flex items-center justify-between border-t pt-6" style="border-color:rgba(255,255,255,0.03)">
+        <div>© <strong style="color:var(--text)">Hamid Ali Asad</strong> — Built with care.</div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:underline">GitHub</a>
+          <a href="#" class="hover:underline">LinkedIn</a>
+          <a href="#" class="hover:underline">Resume</a>
+        </div>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>

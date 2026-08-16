@@ -1,0 +1,3 @@
+# Prevent Jekyll processing
+
+This empty file prevents GitHub Pages from running Jekyll processing, ensuring files like _config.yml or folders starting with underscore are served as-is.
